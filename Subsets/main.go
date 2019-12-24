@@ -11,11 +11,11 @@ func main() {
 }
 
 func subsets(nums []int) [][]int {
-	res := make([][]int, 1<<len(nums))
+	res := make([][]int, 1<<uint(len(nums)))
 	for i := range res {
 		ss := []int{}
 		for j := 0; j < len(nums); j++ {
-			if i&(1<<j) > 0 {
+			if i&(1<<uint(j)) > 0 {
 				ss = append(ss, nums[j])
 			}
 		}
