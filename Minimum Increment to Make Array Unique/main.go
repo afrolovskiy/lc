@@ -3,21 +3,25 @@ package main
 import "fmt"
 
 func main() {
-	// v := []int{1, 2, 2}
-	v := []int{3, 2, 1, 2, 1, 7}
+	v := []int{1, 2, 2}
+	// v := []int{3, 2, 1, 2, 1, 7}
 	fmt.Printf("%d\n", minIncrementForUnique(v))
 }
 
 func minIncrementForUnique(a []int) int {
 	incrs := 0
-	dups := make(map[int]bool)
+	cnts := make(map[int]int)
 	for i := range a {
 		v := a[i]
-		for dups[v] {
-			incrs++
-			v++
+		c := cnts[v]
+		cnts[v] = c + 1
+		for c > 0 {
+			incrs += c
+			v += c
+			c = cnts[v]
+			cnts[v] = c + 1
 		}
-		dups[v] = true
+
 	}
 	return incrs
 }
