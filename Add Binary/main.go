@@ -17,7 +17,7 @@ func addBinary(a string, b string) string {
 		v1, v2 = invert([]byte(b)), invert([]byte(a))
 	}
 
-	res := make([]byte, len(v1)+1)
+	res := make([]byte, 0, len(v1)+1)
 
 	var carry bool
 	var x1, x2, x byte
@@ -45,7 +45,7 @@ func addBinary(a string, b string) string {
 				x = '1'
 			}
 		}
-		res[i] = x
+		res = append(res, x)
 	}
 
 	for i := len(v2); i < len(v1); i++ {
@@ -60,7 +60,7 @@ func addBinary(a string, b string) string {
 		} else {
 			x = x1
 		}
-		res[i] = x
+		res = append(res, x)
 	}
 
 	if carry {
