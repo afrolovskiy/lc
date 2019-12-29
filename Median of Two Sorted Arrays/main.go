@@ -5,8 +5,12 @@ import "fmt"
 func main() {
 	// nums1 := []int{1, 2}
 	// nums2 := []int{3, 4}
-	nums1 := []int{1, 3}
-	nums2 := []int{2}
+
+	// nums1 := []int{1, 3}
+	// nums2 := []int{2}
+
+	nums1 := []int{2}
+	nums2 := []int{}
 	fmt.Println(findMedianSortedArrays(nums1, nums2))
 }
 
@@ -21,6 +25,10 @@ func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 }
 
 func find(nums1 []int, nums2 []int, k int) int {
+	if len(nums1) > len(nums2) {
+		return find(nums2, nums1, k)
+	}
+
 	if len(nums1) == 0 {
 		return nums2[k-1]
 	}
@@ -31,10 +39,6 @@ func find(nums1 []int, nums2 []int, k int) int {
 			return n1
 		}
 		return n2
-	}
-
-	if len(nums1) > len(nums2) {
-		return find(nums2, nums1, k)
 	}
 
 	i1 := k / 2
